@@ -67,7 +67,8 @@ $libri = getAllBooks($mysqli, $searchTerm);
                             </div>
                             <div class="mb-3">
                                 <label for="annoLibro" class="form-label">Anno di pubblicazione</label>
-                                <input type="number" step="1" class="form-control" id="annoLibro" name="anno_pubblicazione">
+                                <input type="number" step="1" class="form-control" id="annoLibro"
+                                    name="anno_pubblicazione">
                             </div>
                             <div class="mb-3">
                                 <label for="genereLibro" class="form-label">Genere</label>
@@ -111,11 +112,10 @@ $libri = getAllBooks($mysqli, $searchTerm);
                                     data-bs-target="<?= "#updateModal_" . $libro['id'] ?>">
                                     Modifica
                                 </a>
-                                <a role="button" class="btn btn-danger btn-sm w-50"
-                                    href="<?= 'gestione.php?action=remove&id=' . $libro['id'] ?>">
-                                    <!-- data-bs-toggle="modal" data-bs-target="<?= '#removeModal_' . $libro['id'] ?>" -->
+                                <button class="btn btn-danger btn-sm w-50" data-bs-toggle="modal"
+                                    data-bs-target="<?= '#removeModal_' . $libro['id'] ?>">
                                     Cancella
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -171,12 +171,13 @@ $libri = getAllBooks($mysqli, $searchTerm);
 
                 <!-- Modale per la cancellazione di un libro -->
 
-                <!-- <div class="modal fade" id="removeModal_" tabindex="-1" aria-labelledby="removeModal_Label"
+                <div class="modal fade" id="<?= "removeModal_" . $libro['id'] ?>" tabindex="-1" aria-labelledby="removeModal_Label"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="removeModal_Label">Vuoi confermare la cancellazione del libro?</h1>
+                                <h1 class="modal-title fs-5" id="removeModal_Label">Vuoi confermare la cancellazione del
+                                    libro?</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -184,11 +185,14 @@ $libri = getAllBooks($mysqli, $searchTerm);
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                                <button type="button" class="btn btn-danger">Conferma</button>
+                                <a role="button" class="btn btn-danger"
+                                    href="<?= 'gestione.php?action=remove&id=' . $libro['id'] ?>">
+                                    Conferma
+                                </a>
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
             <?php } ?>
         </div>
     </div>
