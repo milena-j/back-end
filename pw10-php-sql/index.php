@@ -67,7 +67,7 @@ $libri = getAllBooks($mysqli, $searchTerm);
                             </div>
                             <div class="mb-3">
                                 <label for="annoLibro" class="form-label">Anno di pubblicazione</label>
-                                <input type="number" step="1" class="form-control" id="annoLibro" name="anno">
+                                <input type="number" step="1" class="form-control" id="annoLibro" name="anno_pubblicazione">
                             </div>
                             <div class="mb-3">
                                 <label for="genereLibro" class="form-label">Genere</label>
