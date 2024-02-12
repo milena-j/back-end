@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $config = [
     'host' => 'localhost',
     'user' => 'root',
@@ -23,15 +26,27 @@ if (!$mysqli->query($sql)) {
 
 $mysqli->query("USE gestione_libreria;");
 
-$sql = "CREATE TABLE IF NOT EXISTS libri(
+$sql = "CREATE TABLE IF NOT EXISTS autori (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cognome VARCHAR(100) NOT NULL
+)";
+
+$mysqli->query($sql);
+
+$sql = "CREATE TABLE IF NOT EXISTS libri (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     titolo VARCHAR(100) NOT NULL,
     autore VARCHAR(100) NOT NULL,
     anno_pubblicazione INT(4) NOT NULL,
-    genere VARCHAR(30) NOT NULL
+    genere VARCHAR(30) NOT NULL,
+    id_autore INT(6) UNSIGNED NOT NULL,
+    FOREIGN KEY (id_autore) REFERENCES autori (id) ON DELETE CASCADE ON UPDATE CASCADE 
 )";
 
-$mysqli->query($sql);
+if (!$mysqli->query($sql)) {
+    die($mysqli->connect_error);
+}
 
 /* $sql = "INSERT INTO libri (titolo, autore, anno_pubblicazione, genere) VALUES
 ('Il Signore degli Anelli', 'J.R.R. Tolkien', 1954, 'Fantasy'),
